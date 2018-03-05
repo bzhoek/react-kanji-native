@@ -1,31 +1,27 @@
 import React from 'react'
-import {List, FlatList, StyleSheet, Text, View} from 'react-native'
+import {List, FlatList, StyleSheet, Text, View, SafeAreaView} from 'react-native'
 import {ListView} from 'realm/react-native'
 import KanjiService from './src/KanjiService'
 import KanjiModel from './src/KanjiModel'
-import Realm from "realm"
 
-const realm = new Realm({schema: [KanjiModel]})
-
+let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 export default class App extends React.Component {
   constructor(props) {
     super(props)
-
     this.state = {
-      data: [{"literal": "習"}],
+      dataSource: ds
     }
   }
 
   componentDidMount() {
-    let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    let query=realm.objects('Kanji');
+    let query = KanjiService.findAll()
     this.setState({
-      dataSource:ds.cloneWithRows(query)
+      dataSource: ds.cloneWithRows(query)
     })
   }
 
   render() {
-    return this.flatList();
+    return this.realmList();
   }
 
   realmList() {
@@ -33,17 +29,21 @@ export default class App extends React.Component {
       <Text>Shake your phone to open the developer menu.</Text>
       <ListView
         dataSource={this.state.dataSource}
-        renderRow={({item}) => <Text>{item.literal}</Text>}/>
+        renderRow={this.renderItem}/>
     </View>
   }
 
+  renderItem(item) {
+    return <Text>{item.literal} - {item.meaning}</Text>
+  }
+
   flatList() {
-    return <View style={styles.container}>
+    return <SafeAreaView style={styles.container}>
       <Text>Shake your phone to open the developer menu.</Text>
       <FlatList
         data={this.state.data}
-        renderItem={({item}) => <Text>{item.literal}</Text>}/>
-    </View>
+        renderItem={({item}) => <Text>Hallo</Text>}/>
+    </SafeAreaView>
   }
 }
 

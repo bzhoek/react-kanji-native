@@ -1,4 +1,9 @@
 class KanjiModel {
+  constructor(unicode, literal, drawing) {
+    this.unicode = unicode
+    this.literal = literal
+    this.drawing = drawing
+  }
 }
 
 KanjiModel.schema = {
@@ -7,7 +12,8 @@ KanjiModel.schema = {
   properties: {
     unicode: 'string',
     literal: 'string',
-    drawing: 'string'
+    meaning: 'string',
+    drawing: 'string',
   },
 };
 
