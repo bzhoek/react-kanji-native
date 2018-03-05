@@ -85,7 +85,7 @@
                     </g>
                 </svg>
             </object>
-            <object class="strokes">
+            <object id="kanji-strokes" class="strokes">
                 <svg width="109" height="109" viewBox="0 0 109 109">
                     <g id="kvg:StrokePaths_098a8">
                         <g id="kvg:098a8">
@@ -156,7 +156,9 @@
     }
   }
 
-  animate(document.body.querySelectorAll('path'), 0)
+  function animate_paths() {
+    animate(document.body.querySelectorAll('path'), 0)
+  }
 </script>
 </body>
 </html>
