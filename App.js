@@ -1,11 +1,37 @@
 import React from 'react'
-import {List, FlatList, StyleSheet, Text, View, SafeAreaView} from 'react-native'
+import {List, FlatList, NavigatorIOS, StyleSheet, Text, View, SafeAreaView} from 'react-native'
 import {ListView} from 'realm/react-native'
 import KanjiService from './src/KanjiService'
-import KanjiModel from './src/KanjiModel'
+import Kanji from './components/Kanji'
+
+export default class App extends React.Component {
+
+  render() {
+    return (
+      <NavigatorIOS
+        initialRoute={{
+          component: KanjiList,
+          title: 'All Kanji'
+        }}
+        style={{flex: 1}}
+      />
+    );
+  }
+
+  flatList() {
+    return <SafeAreaView style={styles.container}>
+      <Text>Shake your phone to open the developer menu.</Text>
+      <FlatList
+        data={this.state.data}
+        renderItem={({item}) => <Text>Hallo</Text>}/>
+    </SafeAreaView>
+  }
+}
 
 let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-export default class App extends React.Component {
+
+class KanjiList extends React.Component {
+
   constructor(props) {
     super(props)
     this.state = {
@@ -21,30 +47,27 @@ export default class App extends React.Component {
   }
 
   render() {
-    return this.realmList();
-  }
-
-  realmList() {
     return <View style={styles.container}>
       <Text>Shake your phone to open the developer menu.</Text>
       <ListView
         dataSource={this.state.dataSource}
-        renderRow={this.renderItem}/>
+        renderRow={this.renderItem.bind(this)}/>
     </View>
   }
 
-  renderItem(item) {
-    return <Text>{item.literal} - {item.meaning}</Text>
+  _onForward(item) {
+    console.log(`Hallo, ${item.literal}`)
+    this.props.navigator.push({
+      component: Kanji,
+      title: item.literal,
+      passProps: {drawing: item.drawing.replace(/(\r\n|\n|\r)/gm, "")},
+    });
   }
 
-  flatList() {
-    return <SafeAreaView style={styles.container}>
-      <Text>Shake your phone to open the developer menu.</Text>
-      <FlatList
-        data={this.state.data}
-        renderItem={({item}) => <Text>Hallo</Text>}/>
-    </SafeAreaView>
+  renderItem(item) {
+    return <Text onPress={() => this._onForward(item)}>{item.literal} - {item.meaning}</Text>
   }
+
 }
 
 const styles = StyleSheet.create({
