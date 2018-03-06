@@ -1,26 +1,16 @@
 import Realm from 'realm'
 
 export const repository = new Realm({
-
   schema: [{
     name: 'Kanji',
     primaryKey: 'unicode',
     properties: {
-      unicode: 'string',
+      unicode: {type: 'string', indexed: true},
       literal: 'string',
       meaning: 'string',
       drawing: 'string',
     }
   }]
-  // schema: [{
-  //   name: 'Kanji',
-  //   primaryKey: 'id',
-  //   properties: {
-  //     id: {type: 'string', indexed: true},
-  //     literal: 'string',
-  //     drawing: 'string'
-  //   }
-  // }]
 })
 
 let KanjiService = {
