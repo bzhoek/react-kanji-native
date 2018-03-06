@@ -2,7 +2,7 @@ import React from "react"
 import {StyleSheet, Text, View} from 'react-native';
 import Kanji from "./Kanji"
 import KanjiService from "../src/KanjiService"
-import {ListView} from "realm/react-native/index"
+import {ListView} from "realm/react-native"
 
 let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1.literal !== r2.literal});
 
