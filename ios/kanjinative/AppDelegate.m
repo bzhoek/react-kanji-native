@@ -16,6 +16,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
+  NSFileManager *fileManager = [NSFileManager defaultManager];
+  NSString *fileFromBundle = [[NSBundle mainBundle]pathForResource:@"default" ofType:@"realm"];
+  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+  NSString *documentsDirectory = [paths objectAtIndex:0];
+  NSString *destinationFile = [documentsDirectory stringByAppendingPathComponent:@"default.realm"];
+  if ([fileManager fileExistsAtPath:destinationFile]) {
+    [fileManager removeItemAtPath:destinationFile error:nil];
+    NSLog(@"Deleted existing %@", destinationFile);
+  }
+  [fileManager copyItemAtPath:fileFromBundle toPath:destinationFile error:nil];
+  NSLog(@"Copied %@", destinationFile);
+
   NSURL *jsCodeLocation;
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
