@@ -1,6 +1,6 @@
 import React from 'react'
 import {List, NavigatorIOS, StyleSheet} from 'react-native'
-import KanjiList from './components/KanjiList'
+import KanjiList from './src/KanjiList'
 
 export default class App extends React.Component {
 
