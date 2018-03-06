@@ -41,7 +41,7 @@ export default class KanjiList extends React.Component {
   }
 
   renderItem(item) {
-    return <Text onPress={() => this._onForward(item)}>{item.literal} - {item.meaning}</Text>
+    return <Text style={styles.titleText} onPress={() => this._onForward(item)}>{item.literal} - {item.meaning}</Text>
   }
 
 }
@@ -50,5 +50,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  titleText: {
+    fontSize: 24,
   },
 });
