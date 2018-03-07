@@ -1,20 +1,16 @@
 import React, {Component} from 'react';
-import {WebView} from 'react-native';
+import {Text, View, WebView} from 'react-native';
 import html from './Kanji.html'
 
-class Kanji extends Component {
-
-  constructor(props, context) {
-    super(props, context);
-  }
-
+export default class Kanji extends Component {
   render() {
-    let {drawing} = this.props
+    let {drawing, meaning} = this.props
     return (
-      <WebView source={html} style={{flex: 1}}
-               injectedJavaScript={`document.getElementById('kanji-strokes').innerHTML = '${drawing}'; animate_paths()`}/>
-    );
+      <View style={{flex: 1}}>
+        <WebView source={html} style={{flex: 1}}
+          injectedJavaScript={`document.getElementById('kanji-strokes').innerHTML = '${drawing}'; animate_paths()`}/>
+        <Text style={{flex: 1}}>{meaning}</Text>
+      </View>
+    )
   }
 }
-
-export default Kanji

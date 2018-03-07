@@ -36,7 +36,10 @@ export default class KanjiList extends React.Component {
     this.props.navigator.push({
       component: Kanji,
       title: item.literal,
-      passProps: {drawing: item.drawing.replace(/(\r\n|\n|\r)/gm, "")},
+      passProps: {
+        drawing: item.drawing.replace(/(\r\n|\n|\r)/gm, ""),
+        meaning: item.meaning
+      },
     });
   }
 
