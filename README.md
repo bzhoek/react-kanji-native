@@ -4,6 +4,9 @@ Now [ejected](https://github.com/react-community/create-react-native-app/blob/ma
 
 For production, the JavaScript bundle should be [pre-packaged](https://facebook.github.io/react-native/docs/running-on-device.html).
 
+## Icon
+`brew install libsrvg` Square with 毎日, and 漢字.
+
 ## Realm
 
 Started [here](https://hellokoding.com/todo-app-with-react-native-realm/). Unit testing should be [possible](http://hoangtran.me/ios/testing/2016/10/15/how-to-unit-test-your-realm-database-layer/). Command-line scripts hang when running, but [example](https://realm.io/docs/javascript/latest/) seems to imply this could work.
