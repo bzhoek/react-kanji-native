@@ -1,7 +1,9 @@
 #!/bin/bash -e
 
-sourceIconName="icon.svg"
-targetFolder="ios/kanjinative"
+inkscape="/Applications/Inkscape.app/Contents/Resources/bin/inkscape"
+SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+sourceIconName="${SCRIPTPATH}/icon.svg"
+targetFolder="${SCRIPTPATH}/ios/kanjinative"
 
 # Ensure we're running in location of script.
 #cd "`dirname $0`"
@@ -18,21 +20,21 @@ mkdir -p "$iconPath"
 rm -rf $iconPath/*.png
 
 # iPhone and iPad iOS7+ Sizes
-rsvg-convert $sourceIconName -w 1024 -h 1024 -o $iconPath/appicon-1024.png
-rsvg-convert $sourceIconName -w 120  -h 120  -o $iconPath/appicon-60@2x.png
-rsvg-convert $sourceIconName -w 180  -h 180  -o $iconPath/appicon-60@3x.png
-rsvg-convert $sourceIconName -w 76   -h 76   -o $iconPath/appicon-76.png
-rsvg-convert $sourceIconName -w 152  -h 152  -o $iconPath/appicon-76@2x.png
-rsvg-convert $sourceIconName -w 167  -h 167  -o $iconPath/appicon-83@2x.png
-rsvg-convert $sourceIconName -w 40   -h 40   -o $iconPath/appicon-Small-40.png
-rsvg-convert $sourceIconName -w 80   -h 80   -o $iconPath/appicon-Small-40@2x.png
-rsvg-convert $sourceIconName -w 120  -h 120  -o $iconPath/appicon-Small-40@3x.png
-rsvg-convert $sourceIconName -w 20   -h 20   -o $iconPath/appicon-Tiny.png
-rsvg-convert $sourceIconName -w 40   -h 40   -o $iconPath/appicon-Tiny@2x.png
-rsvg-convert $sourceIconName -w 60   -h 60   -o $iconPath/appicon-Tiny@3x.png
-rsvg-convert $sourceIconName -w 29   -h 29   -o $iconPath/appicon-Small.png
-rsvg-convert $sourceIconName -w 58   -h 58   -o $iconPath/appicon-Small@2x.png
-rsvg-convert $sourceIconName -w 87   -h 87   -o $iconPath/appicon-Small@3x.png
+$inkscape $sourceIconName -w 1024 -h 1024 --export-png $iconPath/appicon-1024.png
+$inkscape $sourceIconName -w 120  -h 120  --export-png $iconPath/appicon-60@2x.png
+$inkscape $sourceIconName -w 180  -h 180  --export-png $iconPath/appicon-60@3x.png
+$inkscape $sourceIconName -w 76   -h 76   --export-png $iconPath/appicon-76.png
+$inkscape $sourceIconName -w 152  -h 152  --export-png $iconPath/appicon-76@2x.png
+$inkscape $sourceIconName -w 167  -h 167  --export-png $iconPath/appicon-83@2x.png
+$inkscape $sourceIconName -w 40   -h 40   --export-png $iconPath/appicon-Small-40.png
+$inkscape $sourceIconName -w 80   -h 80   --export-png $iconPath/appicon-Small-40@2x.png
+$inkscape $sourceIconName -w 120  -h 120  --export-png $iconPath/appicon-Small-40@3x.png
+$inkscape $sourceIconName -w 20   -h 20   --export-png $iconPath/appicon-Tiny.png
+$inkscape $sourceIconName -w 40   -h 40   --export-png $iconPath/appicon-Tiny@2x.png
+$inkscape $sourceIconName -w 60   -h 60   --export-png $iconPath/appicon-Tiny@3x.png
+$inkscape $sourceIconName -w 29   -h 29   --export-png $iconPath/appicon-Small.png
+$inkscape $sourceIconName -w 58   -h 58   --export-png $iconPath/appicon-Small@2x.png
+$inkscape $sourceIconName -w 87   -h 87   --export-png $iconPath/appicon-Small@3x.png
 
 cat > "$iconPath/Contents.json" << EOF
 {
