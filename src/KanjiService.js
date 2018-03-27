@@ -6,6 +6,7 @@ export const repository = new Realm({
     primaryKey: 'unicode',
     properties: {
       unicode: {type: 'string', indexed: true},
+      frequency: {type: 'int', indexed: true},
       literal: 'string',
       meaning: 'string',
       drawing: 'string',
