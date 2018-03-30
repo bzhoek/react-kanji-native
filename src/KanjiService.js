@@ -16,6 +16,7 @@ export const repository = new Realm({
 
 let KanjiService = {
   findAll: () => (repository.objects('Kanji')),
+  byFreq: (freq) => (repository.objects('Kanji').filtered('frequency = $0', freq)),
   save: (kanji) => (repository.write(() => {
     repository.create('Kanji', kanji)
   }))

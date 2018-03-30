@@ -1,25 +1,27 @@
-import React from 'react'
-import {List, NavigatorIOS, StyleSheet} from 'react-native'
+import React from 'react';
+import {NavigatorIOS} from 'react-native';
+import {TabNavigator} from 'react-navigation';
+
 import KanjiList from './src/KanjiList'
+import KanjiDaily from './src/KanjiDaily'
 
-export default class App extends React.Component {
-
+class DailyScreen extends React.Component {
   render() {
     return (
-      <NavigatorIOS
-        initialRoute={{
-          component: KanjiList,
-          title: 'All Kanji'
-        }}
-        style={{flex: 1}}
-      />
-    );
+      <KanjiDaily forDate={new Date()}/>
+    )
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});
+class LookupScreen extends React.Component {
+  render() {
+    return (
+      <NavigatorIOS initialRoute={{component: KanjiList, title: 'All Kanji'}} style={{flex: 1}}/>
+    )
+  }
+}
+
+export default TabNavigator({
+  Daily: {screen: DailyScreen},
+  Lookup: {screen: LookupScreen},
+})
