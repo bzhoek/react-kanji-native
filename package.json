@@ -21,6 +21,7 @@
     "react-native": "0.52.0",
     "react-native-cli": "^2.0.1",
     "react-navigation": "^1.5.8",
-    "realm": "^2.2.13"
+    "realm": "^2.2.13",
+    "seedrandom": "^2.4.3"
   }
 }
