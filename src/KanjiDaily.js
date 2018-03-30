@@ -10,31 +10,24 @@ export default class KanjiDaily extends React.Component {
   constructor(props) {
     super(props)
     this.lookup = new RandomizedLookup()
-    let frequency = this.lookup.forDate(this.props.forDate)
-    let kanjis = KanjiService.byFreq(frequency)
-    this.state = {
-      forDate: props.forDate,
-      frequency: frequency,
-      kanji: kanjis[0],
-      drawing: kanjis[0].drawing,
-      meaning: kanjis[0].meaning
-    }
+    this.state = this.stateForDate(this.props.forDate)
 
     this.handleSwipe = this.handleSwipe.bind(this);
   }
 
-  handleSwipe(delta) {
-    let other = this.state.forDate
-    other.setDate(other.getDate() + delta)
-    let frequency = this.lookup.forDate(other)
+  stateForDate(date) {
+    let frequency = this.lookup.forDate(date)
     let kanjis = KanjiService.byFreq(frequency)
-    this.setState({
-      forDate: other,
-      frequency: frequency,
+    return {
+      forDate: date,
       kanji: kanjis[0],
-      drawing: kanjis[0].drawing,
-      meaning: kanjis[0].meaning
-    })
+    }
+  }
+
+  handleSwipe(delta) {
+    let newDate = this.state.forDate
+    newDate.setDate(newDate.getDate() + delta)
+    this.setState(this.stateForDate(newDate))
   }
 
   componentWillMount() {
@@ -53,18 +46,14 @@ export default class KanjiDaily extends React.Component {
   }
 
   render() {
+    let {literal, frequency, drawing, meaning} = this.state.kanji
     return (
       <View style={{flex: 1, alignItems: 'stretch', marginTop: 20}}>
         <View {...this._panResponder.panHandlers}>
-          <DailyHeader forDate={this.state.forDate} frequency={this.state.frequency}/>
+          <DailyHeader forDate={this.state.forDate} frequency={frequency}/>
         </View>
-        <KanjiDetail literal={this.state.kanji.literal} drawing={this.state.drawing} meaning={this.state.meaning}/>
+        <KanjiDetail literal={literal} drawing={drawing} meaning={meaning}/>
       </View>
     )
-  }
-
-  kanjiForDate() {
-    let kanjis = KanjiService.byFreq(this.lookup.forDate(this.state.forDate))
-    return kanjis[0].literal
   }
 }
