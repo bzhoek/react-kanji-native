@@ -8,7 +8,7 @@ export default class KanjiDetail extends Component {
     let {meaning} = this.props
     return (
       <View style={{flex: 1}}>
-        <WebView source={html} style={{flex: 1}}
+        <WebView source={html} style={{flex: 1}} key={this.props.literal}
           injectedJavaScript={`document.getElementById('kanji-strokes').innerHTML = '${drawing}'; animate_paths()`}/>
         <Text style={{flex: 1}}>{meaning}</Text>
       </View>
