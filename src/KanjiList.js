@@ -1,6 +1,6 @@
 import React from "react"
 import {StyleSheet, Text, View} from 'react-native';
-import Kanji from "./Kanji"
+import KanjiDetail from "./KanjiDetail"
 import KanjiService from "../src/KanjiService"
 import {ListView} from "realm/react-native"
 
@@ -34,7 +34,7 @@ export default class KanjiList extends React.Component {
   _onForward(item) {
     console.log(`Hallo, ${item.literal}`)
     this.props.navigator.push({
-      component: Kanji,
+      component: KanjiDetail,
       title: item.literal,
       passProps: {
         drawing: item.drawing.replace(/(\r\n|\n|\r)/gm, ""),

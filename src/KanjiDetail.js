@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Text, View, WebView} from 'react-native';
 import html from './Kanji.html'
 
-export default class Kanji extends Component {
+export default class KanjiDetail extends Component {
   render() {
     let {drawing, meaning} = this.props
     return (
