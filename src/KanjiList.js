@@ -32,7 +32,6 @@ export default class KanjiList extends React.Component {
   }
 
   _onForward(item) {
-    console.log(`Hallo, ${item.literal}`)
     this.props.navigator.push({
       component: KanjiDetail,
       title: item.literal,

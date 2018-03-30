@@ -1,5 +1,5 @@
 import React from "react"
-  import {PanResponder, SafeAreaView, View} from 'react-native';
+import {PanResponder, SafeAreaView, View} from 'react-native';
 
 import DailyHeader from "./DailyHeader"
 import KanjiDetail from "./KanjiDetail"
@@ -31,11 +31,9 @@ export default class KanjiDaily extends React.Component {
   }
 
   componentWillMount() {
-    console.log("Mounter")
     this._panResponder = PanResponder.create({
       onMoveShouldSetResponderCapture: () => true,
       onMoveShouldSetPanResponderCapture: () => true,
-
       onPanResponderGrant: (e, gestureState) => {
         console.log(`Granted ${gestureState.x0}`)
       },
