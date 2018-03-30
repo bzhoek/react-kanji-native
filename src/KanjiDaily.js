@@ -1,6 +1,7 @@
 import React from "react"
 import {Text, View} from 'react-native';
 
+import DailyHeader from "./DailyHeader"
 import KanjiDetail from "./KanjiDetail"
 import KanjiService from "../src/KanjiService"
 import RandomizedLookup from './RandomizedLookup'
@@ -21,9 +22,7 @@ export default class KanjiDaily extends React.Component {
   render() {
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 20}}>
-        <Text>{this.props.forDate.toLocaleDateString()}</Text>
-        <Text>{this.state.frequency}</Text>
-        <Text>{this.kanjiForDate()}</Text>
+        <DailyHeader forDate={this.props.forDate} frequency={this.state.frequency}/>
         <KanjiDetail drawing={this.state.drawing} meaning={this.state.meaning}/>
       </View>
     )
