@@ -4,7 +4,8 @@ import html from './Kanji.html'
 
 export default class KanjiDetail extends Component {
   render() {
-    let {drawing, meaning} = this.props
+    let drawing = this.props.drawing.replace(/(\r\n|\n|\r)/gm, "")
+    let {meaning} = this.props
     return (
       <View style={{flex: 1}}>
         <WebView source={html} style={{flex: 1}}
