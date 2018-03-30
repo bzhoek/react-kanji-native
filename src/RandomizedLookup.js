@@ -18,7 +18,7 @@ export default class RandomizedLookup {
     }
   }
 
-  forDay(date = new Date()) {
+  forDate(date = new Date()) {
     return Math.round(date.getTime() / ONE_DAY) % this.count
   }
 }
