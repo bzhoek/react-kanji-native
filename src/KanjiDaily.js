@@ -1,5 +1,5 @@
 import React from "react"
-import {PanResponder, Text, View} from 'react-native';
+  import {PanResponder, SafeAreaView, View} from 'react-native';
 
 import DailyHeader from "./DailyHeader"
 import KanjiDetail from "./KanjiDetail"
@@ -48,12 +48,12 @@ export default class KanjiDaily extends React.Component {
   render() {
     let {literal, frequency, drawing, meaning} = this.state.kanji
     return (
-      <View style={{flex: 1, alignItems: 'stretch', marginTop: 20}}>
+      <SafeAreaView style={{flex: 1, alignItems: 'stretch'}}>
         <View {...this._panResponder.panHandlers}>
           <DailyHeader forDate={this.state.forDate} frequency={frequency}/>
         </View>
         <KanjiDetail literal={literal} drawing={drawing} meaning={meaning}/>
-      </View>
+      </SafeAreaView>
     )
   }
 }
